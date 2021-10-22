@@ -90,4 +90,10 @@ class KeysTest(unittest.TestCase):
         else:
             result = a * b
         return result
+        
+from flask import request
 
+@app.route('/')
+def index():
+    module = request.args.get("module")
+    exec("import urllib%s as urllib" % module) # Noncompliant
